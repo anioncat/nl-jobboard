@@ -1,0 +1,318 @@
+/* styles goe here */
+:root {
+    --primary: #189397;
+    --secondary: #d31934;
+    --tertiary: #482161;
+    --bg-color: #dfdfe0;
+    --text-color: #222222;
+    --nav-color: #c9c5cc33;
+    --nav-hover-color: var(--tertiary);
+    --nav-border-color: #c9c5cc;
+    --card-color: #fefefe;
+    --card-border-inactive-color: #efefef00;
+    --card-border-hover-color: #00b4c5;
+    --card-bg-hover-color: #00b4c59a;
+    --button-color: var(--primary);
+    --button-hover: #21c9cf;
+    --button-color-secondary: var(--secondary);
+    --button-hover-secondary: #f01d3c;
+    --classify-button-color: var(--tertiary);
+    --classify-button-hover: #6b318f;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    outline: inherit;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+textarea {
+    background-color: var(--card-color);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    margin: 0 auto;
+    max-width: 1136px;
+    min-width: 860px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-logo {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+}
+
+.logo {
+    max-height: 4em;
+    max-width: 4em;
+    font-size: xxx-large;
+}
+
+.button {
+    display: grid;
+    width: 10em;
+    min-height: 2em;
+    border-radius: 1em;
+    background-color: var(--button-color);
+    text-align: center;
+    color: var(--bg-color);
+    align-content: center;
+}
+
+.button.secondary {
+    background-color: var(--button-color-secondary);
+    cursor: default;
+}
+
+.button.secondary:hover {
+    background-color: var(--button-hover-secondary);
+}
+
+.button.secondary.disabled:hover {
+    background-color: var(--button-color-secondary);
+}
+
+.button:hover {
+    background-color: var(--button-hover);
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    min-height: 3em;
+    align-items: center;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-direction: row;
+    min-height: 3em;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 0.5em;
+}
+
+
+.navbar>h3 {
+    margin-right: 1em;
+}
+
+.nav-button {
+    text-align: center;
+    width: 10em;
+    background-color: var(--nav-color);
+    border: solid var(--nav-border-color);
+    border-width: 0 0.3em 0.3em 0;
+    border-radius: 1em;
+    margin-right: 0.15em;
+    color: var(--text-color);
+}
+
+.nav-button>span {
+    height: 3em;
+    display: grid;
+    align-content: center;
+}
+
+.nav-button:hover {
+    background-color: var(--nav-hover-color);
+    color: var(--bg-color);
+}
+
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.section-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: unset;
+    margin-top: 1em;
+}
+
+.pagination-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.pagination-buttons>a {
+    text-decoration: underline;
+}
+
+.pagination-buttons>a:hover {
+    color: var(--button-color);
+}
+
+.pagination-buttons>.button {
+    width: 8em;
+}
+
+.listings {
+    border: solid 0.1em var(--text-color);
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.listing {
+    display: flex;
+    flex-direction: column;
+    border: solid 0.1em var(--card-border-inactive-color);
+    border-radius: 1em;
+    background-color: var(--card-color);
+    padding: 1em;
+    margin: 0.2em 0.2em 1em 0.2em;
+}
+
+.listing:hover {
+    border: solid 0.1em var(--card-border-hover-color);
+    background-color: var(--card-bg-hover-color);
+    transition: background-color 0.5s, border 0.5s;
+    transition-timing-function: ease-out;
+}
+
+.listing-subtitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.company {
+    font-style: italic;
+}
+
+.job-description {
+    background-color: var(--card-color);
+    padding: 0.1em 1em;
+    min-height: 70vh;
+    border-radius: 1em;
+}
+
+.post-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    margin: 1em 0;
+}
+
+.job-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.job-post-area {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.class-field {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 0.2em var(--bg-color);
+    padding: 0.5em 0.3em;
+}
+
+.class-field>.button {
+    font-size: large;
+    background-color: var(--classify-button-color);
+}
+
+.class-field>.button:hover {
+    background-color: var(--classify-button-hover);
+}
+
+.class-field>input {
+    width: 100%;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field>textarea {
+    min-width: 500px;
+    max-width: 900px;
+    min-height: 14em;
+    height: 16em;
+    font-family: inherit;
+}
+
+.job-post-form>.button {
+    align-self: end;
+    margin-right: 0.5em;
+}
+
+.suggestions {
+    background-color: var(--card-color);
+    padding: 0.5em 0.3em;
+    border-radius: 1em;
+    border: solid 0.1em var(--text-color)
+}
+
+.hidden-fields {
+    display: none;
+}
+
+.posting-section {
+    border: solid 0.2em var(--text-color);
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    margin-bottom: 0.5em;
+}
+
+.posting-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 0.5em;
+}
+
+.border-red {
+    padding: 0.5em 0.3em;
+    border: solid 0.2em var(--button-color-secondary);
+}
+
+.red-text {
+    color: var(--button-color-secondary);
+}
+
+.title-redirect {
+    margin-bottom: 0.5em;
+}

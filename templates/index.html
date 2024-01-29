@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="section-title">
+    <div class="title-redirect">
+      <h2>
+        {{ section_info["title_text"] }}
+        {% if pagination_info["page_num"] > 0 %}- Page {{ pagination_info["page_num"] + 1 }}{% endif %}
+      </h2>
+      {% if endpoint_not_exist %}<span>We couldn't find that page so we redirected you to the full page.</span>{% endif %}
+      </div>
+      <div class="pagination-buttons">
+        {% if pagination_info["page_num"]|int > 0 %}
+          <a class="button" href="/{{ section_info['section'] }}?page={{ pagination_info['page_num'] - 1 }}">«Prev</a>
+        {% else %}
+          <span class="button secondary disabled">«Prev</span>
+        {% endif %}
+        {% if pagination_info["index_end"]|int < pagination_info["total"]|int %}
+          <a class="button" href="/{{ section_info['section'] }}?page={{ pagination_info['page_num'] + 1 }}">Next»</a>
+        {% else %}
+          <span class="button secondary disabled">Next»</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="listings">
+      {% for job in jobs_display %}
+        {% set webindex = job['webindex'] %}
+        {% set title = job['title'] %}
+        {% set company = job['company'] %}
+        {% set description = job['description'] %}
+        {% set category = job['category'] %}
+        <a href="/job/{{ webindex }}">
+          <div class="listing">
+            <h3>{{ title }}</h3>
+            <div class="listing-subtitle">
+              <span class="company">{{ company }}</span>
+              <span>{{ category }} - {{ webindex }}</span>
+            </div>
+            {% if description | length > max_length %}
+              {% set description = description[0:max_length] + '...' %}
+            {% endif %}
+            <p>{{ description }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    <div class="section-nav">
+      <div class="pagination-buttons">
+        {% if pagination_info["page_num"]|int > 0 %}
+          <a href="/{{ section_info['section'] }}?page={{ pagination_info['page_num'] - 1 }}">«Prev</a>
+        {% endif %}
+        {% if pagination_info["page_num"] > 1 %}<a href="/{{ section_info['section'] }}?page=0">1</a>{% endif %}
+        {% set lower_half = pagination_info['page_num'] // 2 %}
+        {% if lower_half == 1 and pagination_info["page_num"] != 2 %}
+          <a href="/{{ section_info['section'] }}?page=1"">2</a>
+        {% endif %}
+        {% if lower_half > 1 %}<a href="/{{ section_info['section'] }}?page={{ lower_half }}"">...</a>{% endif %}
+        {% if pagination_info["page_num"] > 0 %}
+          <a href="/{{ section_info['section'] }}?page={{ pagination_info['page_num'] - 1 }}">{{ pagination_info['page_num'] }}</a>
+        {% endif %}
+        <span>{{ pagination_info['page_num'] + 1 }}</span>
+        {% set last_page = pagination_info["total"] // pagination_info["jobs_per_page"] %}
+        {% if pagination_info["page_num"] + 1 < last_page - 1 %}
+          <a href="/{{ section_info['section'] }}?page={{ pagination_info['page_num'] + 1 }}">{{ pagination_info['page_num'] + 2 }}</a>
+        {% endif %}
+        {% set upper_half = (last_page + pagination_info['page_num'] + 1) // 2 %}
+        {% if upper_half == last_page - 1 %}
+          <a href="/{{ section_info['section'] }}?page={{ upper_half }}">{{ upper_half+1 }}</a>
+        {% endif %}
+        {% if upper_half < last_page - 1 %}<a href="/{{ section_info['section'] }}?page={{ upper_half }}">...</a>{% endif %}
+        {% if last_page > pagination_info['page_num'] %}
+          <a href="/{{ section_info['section'] }}?page={{ last_page }}">{{ last_page + 1 }}</a>
+        {% endif %}
+        {% if pagination_info["index_end"] < pagination_info["total"] %}
+          <a href="/{{ section_info['section'] }}?page={{ pagination_info['page_num'] + 1 }}">Next»</a>
+        {% endif %}
+      </div>
+      <div class="pagination-info">
+        Showing {{ pagination_info["index_start"] + 1 }} - {{ pagination_info["index_end"] }} of {{ pagination_info["total"]
+        }}
+      </div>
+    </div>
+  {% endblock %}

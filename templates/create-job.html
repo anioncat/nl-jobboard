@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+  <a class="button" href="/{{ section }}{{ page }}">‹ Back</a>
+  <h2>Post new job listing</h2>
+  <p>Got a new job opening? Post it here.</p>
+  <div class="job-post-area">
+    <form id="post-form" class="job-post-form" action="/create" method="post">
+      <div class="form-field">
+        <label for="title">Title:</label>
+        <input type="text"
+               id="title"
+               name="title"
+               placeholder="Title of Job Ad"
+               value="{{ job_info['title'] }}"
+               required />
+      </div>
+      <div class="form-field">
+        <label for="company">Company:</label>
+        <input type="text"
+               id="company"
+               name="company"
+               placeholder="Company (optional)"
+               value="{{ job_info['company'] }}" />
+      </div>
+      <div class="form-field">
+        <label for="description">Description:</label>
+        <textarea id="description"
+                  name="description"
+                  placeholder="What are you looking for in an applicant?"
+                  required>{{ job_info['description'] }}</textarea>
+      </div>
+      {% if cc | length > 0 %}
+        <div class="suggestions">
+          {% if forgot_category %}<span class="red-text">Looks like you didn't enter a category. </span>{% endif %}
+          We suggest:
+          <ol>
+            {% for c in cc %}
+              <li>{{ c[0] }} ({{ '%.2f' % (c[1] * 100) }}%)</li>
+            {% endfor %}
+          </ol>
+        </div>
+      {% endif %}
+      <div class="class-field {% if forgot_category %}border-red{% endif %}">
+        <label for="category">Category:</label>
+        <input id="category"
+               name="category"
+               value="{{ job_info['category'] }}"
+               placeholder="Category" />
+        <button class="button" name="button" type="submit" value="classify">Classify</button>
+      </div>
+      <button form="post-form"
+              class="button"
+              name="button"
+              type="submit"
+              value="submit">Submit</button>
+    </form>
+  </div>
+{% endblock %}

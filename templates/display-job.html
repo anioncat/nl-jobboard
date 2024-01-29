@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% set webindex = job['webindex'] %}
+  {% set title = job['title'] %}
+  {% set company = job['company'] %}
+  {% set description = job['description'] %}
+  {% set category = job['category'] %}
+  <div class="job-post">
+    <div class="post-nav">
+      <a class="button" href="/{{ section }}{{ page }}">‹ Back</a>
+      <div class="listing-subtitle">
+        <span>{{ category }} - {{ webindex }}</span>
+      </div>
+    </div>
+    <div class="job-description">
+      <h2>{{ title }}</h2>
+      <em><span>{{ company }}</span></em>
+      <hr />
+      <p>{{ description }}</p>
+    </div>
+  </div>
+{% endblock %}

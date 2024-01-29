@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="jobs,nl" />
+    <meta name="description"
+          content="Job board with NLP model to predict job categories" />
+    <title>A2 Milestone 2 - Job Board | {{ page_title }}</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}"
+          type="text/css"
+          media="all" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="title-logo">
+          <div class="logo">
+            <a href="/">📋</a>
+          </div>
+          <div>
+            <h1>
+              <a href="/">Natural Language Job Board</a>
+            </h1>
+            <em>A job board that can read your job descriptions!</em>
+          </div>
+        </div>
+        <a class="button" href="/create">Post new job</a>
+      </div>
+      <div class="navbar">
+        <h3>Categories:</h3>
+        <div class="nav-buttons">
+          <a href="/" class="nav-button"><span>See All</span></a>
+          {% for cat in global_cats %}<a href="/{{ cat[1] }}" class="nav-button"><span>{{ cat[0] }}</span></a>{% endfor %}
+        </div>
+      </div>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
