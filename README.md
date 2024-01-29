@@ -1,5 +1,10 @@
 # Flask webapp with NL model integration
 
+## Requirements
+- flask
+- scikit-learn
+- nltk
+
 ---
 
 ## Usage
